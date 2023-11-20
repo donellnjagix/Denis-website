@@ -1,41 +1,67 @@
 'use client'
-import Link from 'next/link';
-import { useState } from 'react';
+import Image from "next/image"
+import logo from '@/public/images/logo.png';
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
+import useMediaQuery from "@/app/hooks/useMediaQuery";
+import Link from "next/link";
 
-const Navbar: React.FC = () => {
-  const [isNavbarCollapsed, setIsNavbarCollapsed] = useState(true);
-
-  const handleNavbarCollapse = () => {
-    setIsNavbarCollapsed(!isNavbarCollapsed);
-  };
+type Props = {};
+const Nav = (props: Props) => {
+  const [isMenuToggled, setIsMenuToggled] = useState<boolean>(false);
+  const isAboveMediumScreens = useMediaQuery("(min-width: 1060px)");
+  const router = useRouter();
 
   return (
-    <div className="navbar-container" style={{ display: 'flex', justifyContent: 'center', backgroundColor: '#3C8474', color: '#ECF4FC' }}>
-      <div className="navbar" style={{ display: 'flex', alignItems: 'center', maxWidth: '600px', width: '100%' }}>
-        <button className="navbar-toggle" onClick={handleNavbarCollapse} style={{ borderColor: '#5C9C8C', color: '#ECF4FC' }}>
-          <span className="navbar-toggle-icon"></span>
-        </button>
-        <div className={`navbar-collapse ${isNavbarCollapsed ? 'collapsed' : ''}`} style={{ backgroundColor: '#ACCCC4', marginLeft: '10px' }}>
-          {/* Removed the profile picture section */}
-          <p className="navbar-user-name" style={{ color: '#295B50', marginLeft: '5px' }}>
-            John Doe
-          </p>
-          <Link href="/home">
-            <span style={{ color: '#5C9C8C', margin: '5px' }}>Home</span>
-          </Link>
-          <Link href="/account-profile">
-            <span style={{ color: '#5C9C8C', margin: '5px' }}>Account Profile</span>
-          </Link>
-          <Link href="/bank-balance">
-            <span style={{ color: '#5C9C8C', margin: '5px' }}>Bank Balance</span>
-          </Link>
-          <Link href="/change-password">
-            <span style={{ color: '#5C9C8C', margin: '5px' }}>Change Password</span>
-          </Link>
-        </div>
+    <div className=" p-3 shadow-lg fixed top-0 z-30 w-full bg-white">
+    <div className="flex justify-between items-center w-5/6 mx-auto">
+        {/* image */}
+        <div className="cursor-pointer" onClick = {() => router.push('/')}>
+       <Image
+        src={logo}
+        alt="logo"
+        height={70}
+        width={70}
+        className="object-cover"
+        />
       </div>
+      {/* links */}
+      {isAboveMediumScreens ? (
+        <div className="flex gap-4">
+        <p className="transition duration-300 text-base hover:text-accent-orange cursor-pointer" onClick = {() => router.push("/")}>Home</p>
+        <Link className="transition duration-300 text-base hover:text-accent-orange cursor-pointer" href="#properties">Properties</Link>
+        <Link className="transition duration-300 text-base hover:text-accent-orange cursor-pointer" href="#design">Design</Link>
+        <Link className="transition duration-300 text-base hover:text-accent-orange cursor-pointer" href="#contactus">Contact</Link>
+      </div>
+      ) : (
+        <button
+        className="rounded-full bg-accent-orange p-2"
+        onClick={() => setIsMenuToggled(!isMenuToggled)}
+      >
+        <Bars3Icon className="h-6 w-6 text-white" />
+      </button>
+      )}
     </div>
-  );
-};
+    {!isAboveMediumScreens && isMenuToggled &&(
+      <div className="fixed right-0 bottom-0 z-40 h-full w-[300px] bg-alice-blue drop-shadow-xl">
+        {/* close icon */}
+        <div className="flex justify-end p-12">
+                <button onClick={() => setIsMenuToggled(!isMenuToggled)}>
+                    <XMarkIcon className="text-accent-black w-6 h-6"/>
+                </button>
+            </div>
+            {/* menu items */}
+            <div className={`flex flex-col gap-10 ml-[33%] text-2xl`}>
+            <p className="transition duration-300 text-base hover:text-accent-orange cursor-pointer" onClick = {() => router.push("/")}>Home</p>
+        <Link className="transition duration-300 text-base hover:text-accent-orange cursor-pointer" href="/about">  About</Link>
+        <Link className="transition duration-300 text-base hover:text-accent-orange cursor-pointer" href="/properties">Design</Link>
+        <Link className="transition duration-300 text-base hover:text-accent-orange cursor-pointer" href="/projects">Project</Link>
+            </div>
+      </div>
+    )}
+    </div>
+  )
+}
 
-export default Navbar;
+export default Nav
