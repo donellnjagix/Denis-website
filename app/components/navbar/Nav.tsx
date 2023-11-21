@@ -23,20 +23,20 @@ const Nav = (props: Props) => {
         {/* links */}
         {isAboveMediumScreens ? (
           <div className="flex gap-4">
-            <p
-              className="transition duration-300 text-base hover:text-accent-orange cursor-pointer"
-              onClick={() => router.push("/")}
-            >
-              Home
-            </p>
-            <Link className="transition duration-300 text-base hover:text-accent-orange cursor-pointer" href="#properties">
-              Properties
+            <Link href="/">
+              <a className="transition duration-300 text-base hover:text-accent-orange cursor-pointer">Home</a>
             </Link>
-            <Link className="transition duration-300 text-base hover:text-accent-orange cursor-pointer" href="#design">
-              Design
+            <Link href="/about">
+              <a className="transition duration-300 text-base hover:text-accent-orange cursor-pointer">About Us</a>
             </Link>
-            <Link className="transition duration-300 text-base hover:text-accent-orange cursor-pointer" href="#contactus">
-              Contact
+            <Link href="/services">
+              <a className="transition duration-300 text-base hover:text-accent-orange cursor-pointer">Services</a>
+            </Link>
+            <Link href="/faq">
+              <a className="transition duration-300 text-base hover:text-accent-orange cursor-pointer">FAQs</a>
+            </Link>
+            <Link href="/contact">
+              <a className="transition duration-300 text-base hover:text-accent-orange cursor-pointer">Contact</a>
             </Link>
           </div>
         ) : (
@@ -58,28 +58,19 @@ const Nav = (props: Props) => {
       </div>
       {!isAboveMediumScreens && isMenuToggled && (
         <div className="fixed right-0 bottom-0 z-40 h-full w-[300px] bg-alice-blue drop-shadow-xl">
-          {/* close icon */}
-          <div className="flex justify-end p-12">
-            <button onClick={() => setIsMenuToggled(!isMenuToggled)}>
-              <XMarkIcon className="text-accent-black w-6 h-6" />
-            </button>
-          </div>
-          {/* menu items */}
+          {/* ... (existing code) */}
           <div className={`flex flex-col gap-10 ml-[33%] text-2xl`}>
-            <p
-              className="transition duration-300 text-base hover:text-accent-orange cursor-pointer"
-              onClick={() => router.push("/")}
-            >
-              Home
-            </p>
-            <Link className="transition duration-300 text-base hover:text-accent-orange cursor-pointer" href="/about">
-              About
+            <Link href="/">
+              <a className="transition duration-300 text-base hover:text-accent-orange cursor-pointer">Home</a>
             </Link>
-            <Link className="transition duration-300 text-base hover:text-accent-orange cursor-pointer" href="/properties">
-              Design
+            <Link href="/about">
+              <a className="transition duration-300 text-base hover:text-accent-orange cursor-pointer">About</a>
             </Link>
-            <Link className="transition duration-300 text-base hover:text-accent-orange cursor-pointer" href="/projects">
-              Project
+            <Link href="/services">
+              <a className="transition duration-300 text-base hover:text-accent-orange cursor-pointer">Design</a>
+            </Link>
+            <Link href="/faq">
+              <a className="transition duration-300 text-base hover:text-accent-orange cursor-pointer">Project</a>
             </Link>
           </div>
         </div>
