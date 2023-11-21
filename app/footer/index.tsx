@@ -1,57 +1,53 @@
-import React from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
+"use client";
 
-// Assuming your logo is in the public directory
-import logo from '@/public/Logo.png';
+import Image from "next/image";
+import logo from "@/public/images/logo.jpeg";
+import { FaFacebook, FaWhatsapp, FaInstagram } from "react-icons/fa";
+import { BiLogoTwitter } from "react-icons/bi";
 
-const Footer: React.FC = () => {
+type Props = {};
+
+const Footer = (props: Props) => {
+  const currentYear = new Date().getFullYear();
   return (
-    <footer className="bg-white rounded-lg shadow dark:bg-gray-900 m-4">
-      <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
-        <div className="sm:flex sm:items-center sm:justify-between">
-          <Link href="https://flowbite.com/" passHref>
-            <a className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
-              {/* Use Next.js Image component for optimized image loading */}
-              <Image src={logo} alt="Flowbite Logo" width={32} height={32} />
-              <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-                Normanstone Bank
-              </span>
-            </a>
-          </Link>
-          <ul className="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
-            <li>
-              <Link href="#" passHref>
-                <a className="hover:underline me-4 md:me-6">About</a>
-              </Link>
-            </li>
-            <li>
-              <Link href="#" passHref>
-                <a className="hover:underline me-4 md:me-6">Privacy Policy</a>
-              </Link>
-            </li>
-            <li>
-              <Link href="#" passHref>
-                <a className="hover:underline me-4 md:me-6">Licensing</a>
-              </Link>
-            </li>
-            <li>
-              <Link href="#" passHref>
-                <a className="hover:underline">Contact</a>
-              </Link>
-            </li>
-          </ul>
+    <div className="pt-12">
+   <div className="bg-cbf3f0 justify-content mx-auto w-5/6 gap-16 md:flex">
+
+        <div className="mt-16 basis-1/2 md:mt-0">
+         
+          <p className="py-5">
+            We are passionate about delivering
+            exceptional construction services while upholding our core values.
+            With a focus on excellence, integrity, collaboration, and safety, we
+            are dedicated to creating spaces that make a positive difference in
+            the communities we serve.
+          </p>
         </div>
-        <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
-        <span className="block text-sm text-gray-500 sm:text-center dark:text-gray-400">
-          © 2023{' '}
-          <Link href="https://flowbite.com/" passHref>
-            <a className="hover:underline">Flowbite™</a>
-          </Link>
-          . All Rights Reserved.
-        </span>
+        <div className="mt-16 basis-1/4 md:mt-0">
+          <h4 className="font-extrabold text-lg text-accent-gray">Address</h4>
+          <p className="my-5">SKYRISE BUSINESS CENTRE,</p>
+          <p className="my-5">8TH FLOOR</p>
+          <p className="my-5">Britain</p>
+          <p>Nairobi-Kenya.</p>
+        </div>
+        <div className="mt-16 basis-1/4 md:mt-0">
+          <h4 className="font-extrabold text-lg text-accent-gray">
+            Contact Us
+          </h4>
+          <p className="my-5">info@bank.com</p>
+          <p className="my-5">(+254)-729-304-190</p>
+          <div className="flex items-center gap-2">
+            <FaFacebook className="h-6 w-6 text-[#3b5998]" />
+            <FaWhatsapp className="h-6 w-6 text-[#25D366]" />
+            <FaInstagram className="h-6 w-6 text-[#962fbf]" />
+            <BiLogoTwitter className="h-6 w-6 text-[#00acee]" />
+          </div>
+        </div>
       </div>
-    </footer>
+      <p className="text-center py-4 font-extrabold text-accent-black">
+        &copy; {currentYear} <span className="text-accent-orange">Normantone Trust Bank</span>  All rights reserved.
+      </p>
+    </div>
   );
 };
 
