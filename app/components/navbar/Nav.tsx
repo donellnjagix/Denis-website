@@ -1,6 +1,7 @@
+"use client"
 import Image from "next/image";
-import logo from "@/public/images/logo.png";
-import { useRouter } from "next/router"; // Updated import
+import logo from "@/public/Logo.png";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import useMediaQuery from "@/app/hooks/useMediaQuery";
@@ -48,10 +49,7 @@ const Nav = (props: Props) => {
             </button>
             <button
               className="rounded-full bg-accent-orange p-2 text-white"
-              onClick={() => {
-                // Handle login click
-                // You can redirect to the login page or open a login modal here
-              }}
+              onClick={() => router.push("app\components\login\loginform.tsx")} // Navigate to the login page
             >
               Login
             </button>
